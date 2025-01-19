@@ -1,39 +1,78 @@
+'use client'
 import Image from "next/image";
+import { useState, ChangeEvent, FormEvent } from "react";
 
-export default function ContactFormSection(){
+export default function ContactFormSection() {
+    const [formData, setFormData] = useState({ name: "", phone: "", company: "" });
+    const [message, setMessage] = useState("");
+
+    // Define the type for ChangeEvent from inputs
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    // Define the type for FormEvent from the form
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(
+                "https://script.google.com/macros/s/AKfycbyceLh90CcxBk6_DIL3qqWhi7eyCIFmLmecdOcS0bJ7IEJBfkKBiBU6lpHe9f3loIhe/exec",
+                {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            if (result.status === "success") {
+                setMessage("Your data has been submitted successfully!");
+                setFormData({ name: "", phone: "", company: "" });
+            } else {
+                setMessage("Failed to submit data. Please try again.");
+            }
+        } catch (error: any) {
+            console.error("Error:", error.message || error);
+            setMessage("An error occurred. Please try again.");
+        }
+    };
+
     return (
-        <div className="flex flex-col items-center justify-center py-16 px-4 bg-[#faf6f0]">
-            {/* Main Title */}
+        <div className="flex flex-col items-center justify-center py-16 px-4">
             <h1 className="text-[#6278C7] text-3xl lg:text-4xl font-bold text-center mb-8">
                 ЗАИНТЕРЕСОВАНЫ В СОТРУДНИЧЕСТВЕ?
             </h1>
 
-            {/* Content Section */}
-            <div className=" w-full max-w-4xl flex flex-col">
-                {/* Image */}
+            <div className="w-full max-w-4xl flex flex-col">
                 <div className="relative flex">
                     <Image
-                        src="/photographer.png" // Replace with your image
+                        src="/photographer.png"
                         alt="Photographer"
                         width={250}
                         height={300}
                         className="rounded-lg mt-4"
                     />
-                        <p className="absolute top-4 text-right right-[-2px] text-[#6278C7] text-[10px] font-medium max-w-[200px]">
-                            ТОГДА ОСТАВЛЯЙТЕ ЗАЯВКУ И МЫ СВЯЖЕМСЯ С ВАМИ
-                        </p>
-                        <Image src={'/way.svg'} alt={"Way"} width={100} height={300} className="mt-16"/>
+                    <p className="absolute top-4 text-right right-[-2px] text-[#6278C7] text-[10px] font-medium max-w-[200px]">
+                        ТОГДА ОСТАВЛЯЙТЕ ЗАЯВКУ И МЫ СВЯЖЕМСЯ С ВАМИ
+                    </p>
+                    <Image src={'/way.svg'} alt={"Way"} width={80} height={300} className="mt-16"/>
                 </div>
 
-                {/* Form Section */}
                 <div className="bg-[#6278C7] text-white rounded-[19px] p-6">
                     <h2 className="text-xl font-bold mb-2">ЗАПОЛНИТЕ ФОРМУ</h2>
                     <p className="text-sm mb-6">
                         МЫ ЖДЕМ ИМЕННО ВАШУ ЗАЯВКУ, ОСТАВЬТЕ ЕЕ НИЖЕ
                     </p>
 
-                    <form className="flex flex-col gap-4">
-                        {/* Name Field */}
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                         <div className="flex flex-col">
                             <label htmlFor="name" className="text-sm mb-1">
                                 ИМЯ*
@@ -41,12 +80,14 @@ export default function ContactFormSection(){
                             <input
                                 type="text"
                                 id="name"
+                                value={formData.name}
+                                onChange={handleChange}
                                 className="px-4 py-2 rounded-lg text-black outline-none"
                                 placeholder="Введите ваше имя"
+                                required
                             />
                         </div>
 
-                        {/* Phone Field */}
                         <div className="flex flex-col">
                             <label htmlFor="phone" className="text-sm mb-1">
                                 НОМЕР ТЕЛЕФОНА*
@@ -54,12 +95,14 @@ export default function ContactFormSection(){
                             <input
                                 type="tel"
                                 id="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
                                 className="px-4 py-2 rounded-lg text-black outline-none"
                                 placeholder="Введите ваш номер телефона"
+                                required
                             />
                         </div>
 
-                        {/* Company Field */}
                         <div className="flex flex-col">
                             <label htmlFor="company" className="text-sm mb-1">
                                 КОМПАНИЯ*
@@ -67,12 +110,14 @@ export default function ContactFormSection(){
                             <input
                                 type="text"
                                 id="company"
+                                value={formData.company}
+                                onChange={handleChange}
                                 className="px-4 py-2 rounded-lg text-black outline-none"
                                 placeholder="Введите название вашей компании"
+                                required
                             />
                         </div>
 
-                        {/* Submit Button */}
                         <button
                             type="submit"
                             className="bg-white text-[#6278C7] font-bold py-3 rounded-lg mt-4 hover:bg-gray-100 transition"
@@ -80,8 +125,9 @@ export default function ContactFormSection(){
                             ОСТАВИТЬ ЗАЯВКУ
                         </button>
                     </form>
+                    {message && <p className="mt-4 text-sm text-white">{message}</p>}
                 </div>
             </div>
         </div>
-    )
+    );
 }

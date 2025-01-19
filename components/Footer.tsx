@@ -21,10 +21,9 @@ export default function Footer(){
                     <Image
                         src="/logo-white.svg" // Replace with your logo file
                         alt="Tolqyn Logo"
-                        width={120}
-                        height={40}
+                        width={200}
+                        height={80}
                     />
-                    <p className="text-[9px] mt-2">оперативное медиа производство</p>
                 </div>
 
                 {/* Right Section - Legal Info and Social Media */}

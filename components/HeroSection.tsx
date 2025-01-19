@@ -22,7 +22,7 @@ export default function HeroSection() {
                 <Image src={"/arrow.svg"} alt={"Arrow"} width={7} height={3} /></button>
             </div>
             
-            <div className="absolute top-[-20px] right-0 z-50">
+            <div className="absolute top-[-20px] right-0 z-40">
                 <Image
                     src="/camera.png"
                     alt="Camera"

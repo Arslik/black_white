@@ -1,26 +1,52 @@
+'use client'
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Header() {
+    const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+    const toggleNavbar = () => {
+        setIsNavbarOpen(!isNavbarOpen);
+    };
+
     return (
-        <header className="border-b-2 border-blue-700">
-            <div className=" container mx-auto px-4 py-2 flex justify-between items-center">
+        <header className="sticky bg-[#F7F2EC] top-0 border-b-2 border-blue-700 z-50">
+            <div className="container mx-auto px-4 py-2 flex justify-between items-center">
                 {/* Left Section: Icons */}
                 <div className="flex space-x-4">
                     <a href="#" className="text-blue-700">
-                        <Image src={"/whatsapp.svg"} alt={"WhatsApp"} width={24} height={24} className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
+                        <Image
+                            src={"/whatsapp.svg"}
+                            alt={"WhatsApp"}
+                            width={24}
+                            height={24}
+                            className="sm:w-6 sm:h-6 lg:w-8 lg:h-8"
+                        />
                     </a>
                     <a href="#" className="text-blue-700">
-                        <Image src={"/telegram.svg"} alt={"Telegram"} width={24} height={24} className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
+                        <Image
+                            src={"/telegram.svg"}
+                            alt={"Telegram"}
+                            width={24}
+                            height={24}
+                            className="sm:w-6 sm:h-6 lg:w-8 lg:h-8"
+                        />
                     </a>
                     <a href="#" className="text-blue-700">
-                        <Image src={"/instagram.svg"} alt={"Instagram"} width={24} height={24} className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
+                        <Image
+                            src={"/instagram.svg"}
+                            alt={"Instagram"}
+                            width={24}
+                            height={24}
+                            className="sm:w-6 sm:h-6 lg:w-8 lg:h-8"
+                        />
                     </a>
                 </div>
 
                 {/* Center Section: Logo */}
                 <div className="flex-grow flex justify-center">
                     <Image
-                        src={"/logo.png"}
+                        src={"/logo.svg"}
                         alt={"Tolqyn"}
                         width={103}
                         height={61}
@@ -28,9 +54,12 @@ export default function Header() {
                     />
                 </div>
 
-                {/* Right Section: Menu */}
+                {/* Right Section: Menu Button */}
                 <div>
-                    <button className="text-blue-700">
+                    <button
+                        onClick={toggleNavbar}
+                        className="text-blue-700 focus:outline-none"
+                    >
                         <Image
                             src={"/menu.svg"}
                             alt={"Menu"}
@@ -41,6 +70,72 @@ export default function Header() {
                     </button>
                 </div>
             </div>
+
+            {/* Navbar Section */}
+            <nav
+                className={`fixed top-0 left-0 w-full h-screen bg-[#F7F2EC] border-t-2 border-blue-700 transition-transform transform ${
+                    isNavbarOpen ? "translate-y-0" : "-translate-y-full"
+                }`}
+            >
+                <ul className="flex flex-col items-center space-y-6 mt-20">
+                    <li>
+                        <a
+                            href="#"
+                            className="text-blue-700 text-xl hover:text-blue-500 transition"
+                        >
+                            Кто мы?
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="text-blue-700 text-xl hover:text-blue-500 transition"
+                        >
+                            Почему мы?
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="text-blue-700 text-xl hover:text-blue-500 transition"
+                        >
+                            Каталог услуг
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="text-blue-700 text-xl hover:text-blue-500 transition"
+                        >
+                            Наши работы
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="text-blue-700 text-xl hover:text-blue-500 transition"
+                        >
+                            Шаги работы
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="text-blue-700 text-xl hover:text-blue-500 transition"
+                        >
+                            Подать заявку
+                        </a>
+                    </li>
+                    <li>
+                        <button
+                            onClick={toggleNavbar}
+                            className="mt-10 px-6 py-2 bg-blue-700 text-white rounded-lg"
+                        >
+                            Закрыть
+                        </button>
+                    </li>
+                </ul>
+            </nav>
         </header>
     );
 }
