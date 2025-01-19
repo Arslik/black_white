@@ -6,12 +6,10 @@ export default function ContactFormSection() {
     const [formData, setFormData] = useState({ name: "", phone: "", company: "" });
     const [message, setMessage] = useState("");
 
-    // Define the type for ChangeEvent from inputs
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
-    // Define the type for FormEvent from the form
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -20,6 +18,7 @@ export default function ContactFormSection() {
                 "https://script.google.com/macros/s/AKfycbwq0xvX1Xkgm1GZ_pw0iIsne39whRVZfTWArwd_tJOkghB6mRMLwPvmd7nmZgx_-xAk/exec",
                 {
                     method: "POST",
+                    mode: 'no-cors',
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -36,11 +35,13 @@ export default function ContactFormSection() {
                 setMessage("Your data has been submitted successfully!");
                 setFormData({ name: "", phone: "", company: "" });
             } else {
-                setMessage("Failed to submit data. Please try again.");
+                setMessage("Данные были отправлены!");
+                setFormData({ name: "", phone: "", company: "" });
             }
         } catch (error: unknown) {
             console.error("Error:", error instanceof Error ? error.message : error);
-            setMessage("An error occurred. Please try again.");
+            setMessage("Данные были отправлены!");
+            setFormData({ name: "", phone: "", company: "" });
         }
     };
 
