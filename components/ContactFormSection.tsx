@@ -17,10 +17,9 @@ export default function ContactFormSection() {
 
         try {
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbyceLh90CcxBk6_DIL3qqWhi7eyCIFmLmecdOcS0bJ7IEJBfkKBiBU6lpHe9f3loIhe/exec",
+                "https://script.google.com/macros/s/AKfycby7SEIWmy9WomkLbr-341MzihxxdbzBYz2J5aEuGtPjXPhJbPPoQhkDtFH2IWd5kgOb/exec",
                 {
                     method: "POST",
-                    mode: "no-cors",
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -39,8 +38,8 @@ export default function ContactFormSection() {
             } else {
                 setMessage("Failed to submit data. Please try again.");
             }
-        } catch (error: any) {
-            console.error("Error:", error.message || error);
+        } catch (error: unknown) {
+            console.error("Error:", error instanceof Error ? error.message : error);
             setMessage("An error occurred. Please try again.");
         }
     };
