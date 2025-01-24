@@ -1,23 +1,10 @@
-'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from "next/image";
 
 export default function StatisticsSection() {
-    const { scrollY } = useScroll();
-
-    // Parallax effects for different elements
-    const card1Y = useTransform(scrollY, [0, 1200], [50, -50]); // Moves first card up
-    const card2Y = useTransform(scrollY, [0, 1300], [100, -50]); // Moves second card up
-    const card3Y = useTransform(scrollY, [0, 1400], [150, -50]); // Moves third card up
-    const decorY = useTransform(scrollY, [0, 1600], [100, -20]); // Moves decorative element up
-
     return (
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-8 px-4">
             {/* Card 1 */}
-            <motion.div
-                style={{ y: card1Y }}
-                className="flex z-20 flex-col items-center bg-white rounded-[19px] overflow-hidden shadow-md w-full sm:w-[350px] md:w-[400px] lg:w-[450px]"
-            >
+            <div className="flex z-20 flex-col items-center bg-white rounded-[19px] overflow-hidden shadow-md w-full sm:w-[350px] md:w-[400px] lg:w-[450px]">
                 <Image
                     src="/video-production.png"
                     alt="Video Production"
@@ -31,13 +18,10 @@ export default function StatisticsSection() {
                         <span className="text-sm sm:text-base text-left font-medium"> ОТСНЯТЫХ ВИДЕОРОЛИКОВ</span>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
             {/* Card 2 */}
-            <motion.div
-                style={{ y: card2Y }}
-                className="flex flex-col z-20 items-center bg-white rounded-[19px] overflow-hidden shadow-md w-full sm:w-[350px] md:w-[400px] lg:w-[450px]"
-            >
+            <div className="flex flex-col z-20 items-center bg-white rounded-[19px] overflow-hidden shadow-md w-full sm:w-[350px] md:w-[400px] lg:w-[450px]">
                 <Image
                     src="/business-meeting.png"
                     alt="Business Meeting"
@@ -51,13 +35,10 @@ export default function StatisticsSection() {
                         <span className="text-sm sm:text-base text-left font-medium"> ГОДА <br /> НА РЫНКЕ</span>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
             {/* Card 3 */}
-            <motion.div
-                style={{ y: card3Y }}
-                className="flex flex-col z-20 items-center bg-white rounded-[19px] overflow-hidden shadow-md w-full sm:w-[350px] md:w-[400px] lg:w-[450px]"
-            >
+            <div className="flex flex-col z-20 items-center bg-white rounded-[19px] overflow-hidden shadow-md w-full sm:w-[350px] md:w-[400px] lg:w-[450px]">
                 <Image
                     src="/happy-clients.png"
                     alt="Happy Clients"
@@ -71,17 +52,17 @@ export default function StatisticsSection() {
                         <span className="text-sm sm:text-base text-left font-medium"> ДОВОЛЬНЫХ КЛИЕНТОВ</span>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
             {/* Decorative Element */}
-            <motion.div style={{ y: decorY }} className="absolute -bottom-40 left-0 z-0 md:block">
+            <div className="absolute -bottom-40 left-0 z-0 md:block">
                 <Image
                     src="/decorStats.png"
                     alt="Decorative Element"
                     width={700}
                     height={300}
                 />
-            </motion.div>
+            </div>
         </div>
     );
 }
