@@ -46,7 +46,7 @@ export default function ContactFormSection() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center py-16 px-4">
+        <div id="contact" className="flex flex-col items-center justify-center py-16 px-4">
             <h1 className="text-[#6278C7] text-3xl lg:text-4xl font-bold text-center mb-8">
                 ЗАИНТЕРЕСОВАНЫ В СОТРУДНИЧЕСТВЕ?
             </h1>
@@ -60,7 +60,7 @@ export default function ContactFormSection() {
                         height={300}
                         className="rounded-lg mt-4"
                     />
-                    <p className="absolute top-4 text-right right-[-2px] text-[#6278C7] text-[10px] font-medium max-w-[200px]">
+                    <p className="absolute top-4 text-right right-[-2px] text-[#6278C7] text-[10px] lg:text-[14px] font-medium max-w-[200px]">
                         ТОГДА ОСТАВЛЯЙТЕ ЗАЯВКУ И МЫ СВЯЖЕМСЯ С ВАМИ
                     </p>
                     <Image src={'/way.svg'} alt={"Way"} width={80} height={300} className="mt-16"/>

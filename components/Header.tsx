@@ -14,7 +14,7 @@ export default function Header() {
             <div className="container mx-auto px-4 py-2 flex justify-between items-center">
                 {/* Left Section: Icons */}
                 <div className="flex space-x-4">
-                    <a href="#" className="text-blue-700">
+                    <a href="https://wa.me/77052980497" target="_blank" rel="noreferrer noopener" className="text-blue-700">
                         <Image
                             src={"/whatsapp.svg"}
                             alt={"WhatsApp"}
@@ -23,16 +23,16 @@ export default function Header() {
                             className="sm:w-6 sm:h-6 lg:w-8 lg:h-8"
                         />
                     </a>
-                    <a href="#" className="text-blue-700">
+                    <a href="https://www.tiktok.com/@tolqynproduction?_t=ZM-8tDra7SbrnS&_r=1" target="_blank" rel="noreferrer noopener" className="text-blue-700">
                         <Image
-                            src={"/telegram.svg"}
-                            alt={"Telegram"}
+                            src={"/tiktok.svg"}
+                            alt={"Tiktok"}
                             width={24}
                             height={24}
                             className="sm:w-6 sm:h-6 lg:w-8 lg:h-8"
                         />
                     </a>
-                    <a href="#" className="text-blue-700">
+                    <a href="https://www.instagram.com/tolqynproduction/" target="_blank" rel="noreferrer noopener" className="text-blue-700">
                         <Image
                             src={"/instagram.svg"}
                             alt={"Instagram"}
@@ -48,8 +48,9 @@ export default function Header() {
                     <Image
                         src={"/logo.svg"}
                         alt={"Tolqyn"}
-                        width={103}
-                        height={61}
+                        width={150}
+                        height={100}
+                        quality={100}
                         className="sm:w-24 sm:h-auto lg:w-36 mr-8"
                     />
                 </div>
@@ -80,7 +81,8 @@ export default function Header() {
                 <ul className="flex flex-col items-center space-y-6 mt-20">
                     <li>
                         <a
-                            href="#"
+                            href="#welcome"
+                            onClick={toggleNavbar}
                             className="text-blue-700 text-xl hover:text-blue-500 transition"
                         >
                             Кто мы?
@@ -88,7 +90,8 @@ export default function Header() {
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="#why"
+                            onClick={toggleNavbar}
                             className="text-blue-700 text-xl hover:text-blue-500 transition"
                         >
                             Почему мы?
@@ -96,7 +99,8 @@ export default function Header() {
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="#catalog"
+                            onClick={toggleNavbar}
                             className="text-blue-700 text-xl hover:text-blue-500 transition"
                         >
                             Каталог услуг
@@ -104,7 +108,8 @@ export default function Header() {
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="#works"
+                            onClick={toggleNavbar}
                             className="text-blue-700 text-xl hover:text-blue-500 transition"
                         >
                             Наши работы
@@ -112,7 +117,8 @@ export default function Header() {
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="#steps"
+                            onClick={toggleNavbar}
                             className="text-blue-700 text-xl hover:text-blue-500 transition"
                         >
                             Шаги работы
@@ -120,7 +126,8 @@ export default function Header() {
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="#contact"
+                            onClick={toggleNavbar}
                             className="text-blue-700 text-xl hover:text-blue-500 transition"
                         >
                             Подать заявку
